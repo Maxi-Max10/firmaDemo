@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Demo de gestión y firma electrónica para torneos deportivos" />
+    <title>FirmaLiga — Demo de gestión documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="admin-app">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="FirmaLiga inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M9 6.5h9.2L24 12.3V25a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2Z"/><path d="M18 6.5V12h5.5M11 20c2.2-3.7 3.2 1.9 5.2-.8 1.2-1.7 1.8.1 4.3-.7"/></svg>
+          </span>
+          <span>Firma<span>Liga</span></span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navegación principal">
+          <p class="nav-label">GESTIÓN</p>
+          <button class="nav-item active" data-view="overview">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+            Resumen
+          </button>
+          <button class="nav-item" data-view="teams">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Equipos y jugadores
+            <span class="nav-count">12</span>
+          </button>
+          <button class="nav-item" data-view="documents">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+            Documentos
+          </button>
+          <button class="nav-item" data-view="verification">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+            Verificaciones
+          </button>
+          <p class="nav-label nav-label-secondary">CONFIGURACIÓN</p>
+          <button class="nav-item" data-view="settings">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.6a1.7 1.7 0 0 0-.34-1.88L4.2 6.66a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15.4 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9c.12.37.34.7.6 1 .3.25.68.39 1.1.4h.09a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.7.6Z"/></svg>
+            Configuración
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="season-card">
+            <span class="season-icon">⚡</span>
+            <div><strong>Temporada 2026</strong><span>12 equipos activos</span></div>
+          </div>
+          <button class="profile-card" aria-label="Abrir perfil">
+            <span class="avatar avatar-admin">MS</span>
+            <span><strong>Marina Suárez</strong><small>Administradora</small></span>
+            <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </aside>
+
+      <button class="sidebar-overlay" id="sidebar-overlay" aria-label="Cerrar menú lateral"></button>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobile-menu" aria-label="Abrir menú">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="crumb"><span>Temporada 2026</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><strong id="current-crumb">Resumen</strong></div>
+          <div class="top-actions">
+            <button class="icon-button" aria-label="Buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+            <button class="icon-button" id="restart-tour" aria-label="Ver guía de la aplicación"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.5 2.5 0 1 1 3.9 2.1c-.9.6-1.6 1.1-1.6 2.2M12 17h.01"/></svg></button>
+            <button class="icon-button notification" aria-label="Notificaciones"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg><i></i></button>
+            <button class="primary-button small open-request" id="open-signing-top"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Nueva solicitud</button>
+          </div>
+        </header>
+
+        <section class="view active" id="view-overview">
+          <div class="page-heading overview-hero">
+            <div class="hero-copy"><span class="eyebrow">Panel de control</span><h1>Todo listo para jugar.</h1><p>Controlá la documentación de cada jugador desde un solo lugar.</p><div class="hero-meta"><span><i></i>Temporada activa</span><span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Datos actualizados ahora</span></div></div>
+            <button class="secondary-button hero-report"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-4 3 3 5-7"/></svg>Ver reporte completo</button>
+          </div>
+
+          <div class="metrics-grid">
+            <article class="metric-card accent-blue">
+              <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="trend up">+8 esta semana</span></div>
+              <strong>184</strong><span>Jugadores registrados</span>
+            </article>
+            <article class="metric-card accent-green">
+              <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="trend up">81% completo</span></div>
+              <strong id="signed-metric">149</strong><span>Documentos firmados</span>
+            </article>
+            <article class="metric-card accent-amber">
+              <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="trend neutral">Requieren atención</span></div>
+              <strong id="pending-metric">35</strong><span>Pendientes de firma</span>
+            </article>
+            <article class="metric-card accent-violet">
+              <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="trend up">100% trazables</span></div>
+              <strong>157</strong><span>Identidades verificadas</span>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel progress-panel">
+              <div class="panel-heading"><div><h2>Progreso de documentación</h2><p>Estado general de la temporada</p></div><button class="text-button">Ver todos</button></div>
+              <div class="progress-overview">
+                <div class="donut" id="donut"><div><strong id="donut-value">81%</strong><span>completo</span></div></div>
+                <div class="progress-legend">
+                  <div><i class="dot green"></i><span>Firmados</span><strong id="legend-signed">149</strong></div>
+                  <div><i class="dot amber"></i><span>Pendientes</span><strong id="legend-pending">27</strong></div>
+                  <div><i class="dot red"></i><span>Sin enviar</span><strong>8</strong></div>
+                </div>
+              </div>
+              <div class="notice-card"><span class="notice-icon">!</span><div><strong>8 jugadores todavía no recibieron su solicitud</strong><p>Podés enviarlas todas juntas desde Documentos.</p></div><button>Revisar</button></div>
+            </article>
+
+            <article class="panel activity-panel">
+              <div class="panel-heading"><div><h2>Actividad reciente</h2><p>Actualizaciones en tiempo real</p></div><button class="more-button">•••</button></div>
+              <div class="activity-list" id="activity-list">
+                <div class="activity-item"><span class="avatar avatar-lilac">LM</span><div><p><strong>Lucía Martínez</strong> abrió su solicitud</p><span>Las Panteras · Hace 3 min</span></div><i class="status-dot pending-dot"></i></div>
+                <div class="activity-item"><span class="avatar avatar-mint">JP</span><div><p><strong>Javier Pérez</strong> firmó el documento</p><span>Atlético Norte · Hace 18 min</span></div><i class="status-dot success-dot"></i></div>
+                <div class="activity-item"><span class="avatar avatar-sky">CS</span><div><p><strong>Carla Suárez</strong> verificó su identidad</p><span>Rayo Azul · Hace 42 min</span></div><i class="status-dot info-dot"></i></div>
+                <div class="activity-item"><span class="avatar avatar-sand">DR</span><div><p><strong>Diego Romero</strong> recibió un recordatorio</p><span>Unión Central · Hace 1 h</span></div><i class="status-dot neutral-dot"></i></div>
+              </div>
+            </article>
+          </div>
+
+          <article class="panel team-table-panel" id="pending-teams">
+            <div class="panel-heading table-heading"><div><h2>Equipos con documentación pendiente</h2><p>Ordenados por cantidad de acciones necesarias</p></div><button class="secondary-button small">Gestionar equipos</button></div>
+            <div class="responsive-table">
+              <table>
+                <thead><tr><th>Equipo</th><th>Jugadores</th><th>Progreso</th><th>Pendientes</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td><div class="team-cell"><span class="team-logo panthers">P</span><div><strong>Las Panteras</strong><span>Grupo A</span></div></div></td><td>16</td><td><div class="table-progress"><span><i style="width:75%"></i></span><strong>75%</strong></div></td><td><span class="badge pending">4 pendientes</span></td><td><button class="row-button" id="go-panthers">Ver equipo <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td></tr>
+                  <tr><td><div class="team-cell"><span class="team-logo thunder">R</span><div><strong>Rayo Azul</strong><span>Grupo B</span></div></div></td><td>15</td><td><div class="table-progress"><span><i style="width:87%"></i></span><strong>87%</strong></div></td><td><span class="badge pending">2 pendientes</span></td><td><button class="row-button">Ver equipo <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td></tr>
+                  <tr><td><div class="team-cell"><span class="team-logo union">U</span><div><strong>Unión Central</strong><span>Grupo A</span></div></div></td><td>18</td><td><div class="table-progress"><span><i style="width:89%"></i></span><strong>89%</strong></div></td><td><span class="badge pending">2 pendientes</span></td><td><button class="row-button">Ver equipo <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="view-teams">
+          <div class="page-heading compact"><div><span class="eyebrow">Planteles</span><h1>Equipos y jugadores</h1><p>Gestioná los datos y la documentación individual.</p></div><button class="primary-button"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Agregar jugador</button></div>
+          <div class="toolbar"><div class="search-field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input id="player-search" type="search" placeholder="Buscar por nombre, DNI o equipo" /></div><button class="filter-button">Todos los estados <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><button class="secondary-button"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Importar Excel</button></div>
+          <article class="panel players-panel">
+            <div class="team-header"><div class="team-cell"><span class="team-logo panthers large">P</span><div><h2>Las Panteras</h2><span>16 jugadores · Grupo A</span></div></div><div class="team-status"><span><i style="width:75%"></i></span><strong>12 de 16 firmados</strong></div></div>
+            <div class="responsive-table">
+              <table class="players-table">
+                <thead><tr><th>Jugador</th><th>DNI / NIE</th><th>Identidad</th><th>Documento</th><th>Última actividad</th><th></th></tr></thead>
+                <tbody id="players-body">
+                  <tr data-search="lucía martínez las panteras 4821"><td><div class="person-cell"><span class="avatar avatar-lilac">LM</span><div><strong>Lucía Martínez</strong><span>lucia.martinez@email.es</span></div></div></td><td>•••• 4821</td><td><span class="badge verified"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Verificada</span></td><td><span class="badge pending" id="lucia-status">Pendiente</span></td><td id="lucia-activity">Abrió hace 3 min</td><td><button class="primary-button tiny open-request">Gestionar solicitud</button></td></tr>
+                  <tr data-search="martín gómez las panteras 9912"><td><div class="person-cell"><span class="avatar avatar-mint">MG</span><div><strong>Martín Gómez</strong><span>martin.gomez@email.es</span></div></div></td><td>•••• 9912</td><td><span class="badge verified"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Verificada</span></td><td><span class="badge signed">Firmado</span></td><td>Hoy, 10:42</td><td><button class="row-button">Ver PDF</button></td></tr>
+                  <tr data-search="sofía herrera las panteras 1074"><td><div class="person-cell"><span class="avatar avatar-sky">SH</span><div><strong>Sofía Herrera</strong><span>Menor · Tutor: Pablo Herrera</span></div></div></td><td>•••• 1074</td><td><span class="badge review">Tutor pendiente</span></td><td><span class="badge draft">Sin enviar</span></td><td>Ayer, 18:20</td><td><button class="row-button">Preparar</button></td></tr>
+                  <tr data-search="álvaro ruiz las panteras 3368"><td><div class="person-cell"><span class="avatar avatar-sand">AR</span><div><strong>Álvaro Ruiz</strong><span>alvaro.ruiz@email.es</span></div></div></td><td>•••• 3368</td><td><span class="badge verified"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Verificada</span></td><td><span class="badge signed">Firmado</span></td><td>Ayer, 16:05</td><td><button class="row-button">Ver PDF</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="view-documents">
+          <div class="page-heading compact"><div><span class="eyebrow">Archivo digital</span><h1>Documentos</h1><p>Generá, enviá y descargá toda la documentación.</p></div><button class="primary-button open-request"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Nueva solicitud</button></div>
+          <div class="document-cards">
+            <article class="document-card featured-doc"><div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><span class="badge active-badge">Plantilla activa</span><h3>Declaración de responsabilidad</h3><p>Documento individual para cada jugador de la temporada 2026.</p><div class="doc-meta"><span>Versión 2.1</span><span>Actualizada 12/06/26</span></div><button class="secondary-button full">Vista previa</button></article>
+            <article class="upload-card"><span class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></span><h3>Crear nueva plantilla</h3><p>Subí un PDF y configurá los campos que completará la aplicación.</p><button class="text-button">Subir documento</button></article>
+          </div>
+          <article class="panel"><div class="panel-heading"><div><h2>Solicitudes recientes</h2><p>Documentos generados durante los últimos 7 días</p></div><div class="segmented"><button class="active">Todos</button><button>Pendientes</button><button>Firmados</button></div></div><div class="responsive-table"><table><thead><tr><th>Documento</th><th>Firmante</th><th>Equipo</th><th>Estado</th><th>Fecha</th><th></th></tr></thead><tbody><tr><td><strong>Responsabilidad · 2026</strong><span class="subcell">DOC-2026-0184</span></td><td>Lucía Martínez</td><td>Las Panteras</td><td><span class="badge pending" id="lucia-doc-status">Pendiente</span></td><td id="lucia-doc-date">Hoy, 11:26</td><td><button class="row-button open-request">Gestionar</button></td></tr><tr><td><strong>Responsabilidad · 2026</strong><span class="subcell">DOC-2026-0183</span></td><td>Javier Pérez</td><td>Atlético Norte</td><td><span class="badge signed">Firmado</span></td><td>Hoy, 11:08</td><td><button class="row-button">Descargar</button></td></tr><tr><td><strong>Responsabilidad · 2026</strong><span class="subcell">DOC-2026-0182</span></td><td>Carla Suárez</td><td>Rayo Azul</td><td><span class="badge review">Verificando</span></td><td>Hoy, 10:51</td><td><button class="row-button">Ver detalle</button></td></tr></tbody></table></div></article>
+        </section>
+
+        <section class="view" id="view-verification">
+          <div class="page-heading compact"><div><span class="eyebrow">Seguridad</span><h1>Verificaciones de identidad</h1><p>Consultá qué comprobaciones respaldan cada firma.</p></div></div>
+          <div class="verification-layout"><article class="panel verification-summary"><div class="shield-illustration"><svg viewBox="0 0 64 64"><path d="M32 57s21-10 21-27V14L32 6 11 14v16c0 17 21 27 21 27Z"/><path d="m23 31 6 6 13-14"/></svg></div><h2>Identidades protegidas</h2><p>Cada solicitud combina enlace único, documento de identidad, OTP y trazabilidad del PDF.</p><div class="security-list"><div><span>01</span><p><strong>Documento de identidad</strong><small>DNI, NIE o pasaporte</small></p><i>Activo</i></div><div><span>02</span><p><strong>Código de un solo uso</strong><small>Confirmación del teléfono</small></p><i>Activo</i></div><div><span>03</span><p><strong>Hash y auditoría</strong><small>Integridad del documento</small></p><i>Activo</i></div></div></article><article class="panel"><div class="panel-heading"><div><h2>Últimas verificaciones</h2><p>Resultados de identidad más recientes</p></div></div><div class="verification-feed"><div><span class="avatar avatar-mint">JP</span><div><strong>Javier Pérez</strong><small>DNI + selfie · Coincidencia alta</small></div><span class="badge verified">Verificado</span></div><div><span class="avatar avatar-sky">CS</span><div><strong>Carla Suárez</strong><small>DNI válido · OTP confirmado</small></div><span class="badge verified">Verificado</span></div><div><span class="avatar avatar-lilac">LM</span><div><strong>Lucía Martínez</strong><small>DNI válido · Falta firma</small></div><span class="badge pending">En curso</span></div><div><span class="avatar avatar-sand">PH</span><div><strong>Pablo Herrera</strong><small>Tutor de Sofía Herrera</small></div><span class="badge review">Revisión</span></div></div></article></div>
+        </section>
+
+        <section class="view" id="view-settings">
+          <div class="page-heading compact"><div><span class="eyebrow">Preferencias</span><h1>Configuración</h1><p>Personalizá la experiencia y los requisitos de seguridad.</p></div><button class="primary-button">Guardar cambios</button></div>
+          <div class="settings-grid"><article class="panel settings-card"><h2>Identidad visual</h2><div class="form-row"><label>Nombre de la organización<input value="Liga Metropolitana" /></label><label>Nombre del remitente<input value="FirmaLiga" /></label></div><label class="color-label">Color principal<span class="color-input"><i></i>#3156E8</span></label></article><article class="panel settings-card"><h2>Reglas de firma</h2><label class="toggle-row"><span><strong>Solicitar OTP telefónico</strong><small>Requerido antes de acceder al documento</small></span><input type="checkbox" checked /><i></i></label><label class="toggle-row"><span><strong>Verificación con selfie</strong><small>Comparar rostro con fotografía del DNI</small></span><input type="checkbox" checked /><i></i></label><label class="toggle-row"><span><strong>Recordatorios automáticos</strong><small>Cada 48 horas hasta completar</small></span><input type="checkbox" checked /><i></i></label></article></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="request-modal" id="request-modal" aria-hidden="true">
+      <button class="request-backdrop" id="request-backdrop" aria-label="Cerrar solicitud"></button>
+      <section class="request-dialog" role="dialog" aria-modal="true" aria-labelledby="request-title">
+        <div class="request-compose" id="request-compose">
+          <header class="request-header">
+            <div><span class="request-kicker">NUEVA SOLICITUD</span><h2 id="request-title">Enviar documento para firmar</h2><p>Elegí el firmante y el canal por el que recibirá su enlace personal.</p></div>
+            <button class="request-close" id="request-close" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          </header>
+
+          <div class="request-grid">
+            <div class="request-form">
+              <div class="request-section-title"><span>1</span><div><strong>¿Quién debe firmar?</strong><small>Seleccioná una persona registrada</small></div></div>
+              <label class="request-field">Firmante
+                <select id="request-signer">
+                  <option value="lucia" data-name="Lucía Martínez" data-email="lucia.martinez@email.es" data-phone="+34 612 345 947" data-team="Las Panteras" data-initials="LM">Lucía Martínez · Las Panteras</option>
+                  <option value="sofia" data-name="Sofía Herrera" data-email="pablo.herrera@email.es" data-phone="+34 611 205 174" data-team="Las Panteras" data-initials="SH">Sofía Herrera · Tutor: Pablo Herrera</option>
+                  <option value="diego" data-name="Diego Romero" data-email="diego.romero@email.es" data-phone="+34 644 082 319" data-team="Unión Central" data-initials="DR">Diego Romero · Unión Central</option>
+                </select>
+              </label>
+              <div class="selected-recipient">
+                <span class="avatar avatar-lilac" id="request-avatar">LM</span>
+                <div><strong id="request-name">Lucía Martínez</strong><span id="request-contact">lucia.martinez@email.es</span></div>
+                <span class="recipient-ready"><i></i>Datos completos</span>
+              </div>
+
+              <div class="request-section-title request-section-gap"><span>2</span><div><strong>¿Qué documento enviamos?</strong><small>Se generará una copia individual</small></div></div>
+              <label class="request-field">Documento
+                <select id="request-document">
+                  <option value="responsabilidad" data-title="Declaración de responsabilidad" data-code="DOC-2026-0184">Declaración de responsabilidad · 2026</option>
+                  <option value="imagen" data-title="Autorización de uso de imagen" data-code="DOC-2026-0191">Autorización de uso de imagen · 2026</option>
+                  <option value="reglamento" data-title="Aceptación del reglamento" data-code="DOC-2026-0198">Aceptación del reglamento · 2026</option>
+                </select>
+              </label>
+
+              <div class="request-section-title request-section-gap"><span>3</span><div><strong>¿Cómo le llegará?</strong><small>El enlace es único para esta persona</small></div></div>
+              <div class="channel-switch" aria-label="Canal de envío">
+                <button class="active" type="button" data-channel="email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</button>
+                <button type="button" data-channel="whatsapp"><svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7a8.5 8.5 0 1 1 16.3-3.8Z"/><path d="M8.7 8.2c.4 2.8 2.2 4.6 5 5"/></svg>WhatsApp</button>
+              </div>
+              <label class="request-field"><span id="destination-label">Correo de destino</span><input id="request-destination" type="email" value="lucia.martinez@email.es" /></label>
+              <div class="request-security"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><strong>Enlace protegido e individual</strong><span>No incluye el PDF adjunto. La identidad se valida antes de mostrarlo.</span></div></div>
+            </div>
+
+            <aside class="delivery-preview">
+              <div class="preview-heading"><div><span>VISTA PREVIA</span><strong id="preview-channel-title">Así recibirá el email</strong></div><span class="live-pill"><i></i>En vivo</span></div>
+              <div class="email-preview" id="email-preview">
+                <div class="mail-browser"><i></i><i></i><i></i><span>Mensaje nuevo</span></div>
+                <div class="mail-meta"><span>De</span><strong>FirmaLiga · Liga Metropolitana</strong><span>Para</span><strong id="email-to">lucia.martinez@email.es</strong><span>Asunto</span><strong id="email-subject">Lucía, tenés un documento pendiente de firma</strong></div>
+                <div class="mail-body">
+                  <a class="brand mail-brand" href="#" tabindex="-1"><span class="brand-mark"><svg viewBox="0 0 32 32"><path d="M9 6.5h9.2L24 12.3V25a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2Z"/><path d="M18 6.5V12h5.5M11 20c2.2-3.7 3.2 1.9 5.2-.8 1.2-1.7 1.8.1 4.3-.7"/></svg></span><span>Firma<span>Liga</span></span></a>
+                  <span class="mail-eyebrow">SOLICITUD DE FIRMA</span><h3>Hola, <span id="email-first-name">Lucía</span></h3>
+                  <p>La Liga Metropolitana te solicita revisar y firmar el siguiente documento:</p>
+                  <div class="mail-document"><span><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><div><strong id="email-document">Declaración de responsabilidad</strong><small id="email-document-code">DOC-2026-0184 · Temporada 2026</small></div></div>
+                  <button class="mail-cta" type="button" id="preview-sign-link">Revisar y firmar documento</button>
+                  <p class="mail-expiry"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Este enlace personal vence en 7 días.</p>
+                </div>
+              </div>
+
+              <div class="whatsapp-preview" id="whatsapp-preview" hidden>
+                <div class="phone-top"><span>9:41</span><i></i></div>
+                <div class="chat-header"><span class="brand-mark"><svg viewBox="0 0 32 32"><path d="M9 6.5h9.2L24 12.3V25a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2Z"/><path d="M18 6.5V12h5.5"/></svg></span><div><strong>FirmaLiga</strong><small>Cuenta de empresa</small></div></div>
+                <div class="chat-body"><div class="chat-bubble">Hola <strong id="whatsapp-first-name">Lucía</strong> 👋<br/><br/>La Liga Metropolitana te envió <strong id="whatsapp-document">Declaración de responsabilidad</strong> para revisar y firmar.<a href="#" tabindex="-1">firmaliga.app/f/FL-8H4K2D</a><small>11:32 ✓✓</small></div><span class="encrypted-copy">🔒 Mensaje protegido</span></div>
+              </div>
+
+              <div class="link-preview"><span>ENLACE DEL FIRMANTE</span><div><strong>firmaliga.app/f/FL-8H4K2D</strong><button type="button" id="copy-link-inline" aria-label="Copiar enlace"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></svg></button></div><small>Solamente funciona para el firmante seleccionado.</small></div>
+            </aside>
+          </div>
+
+          <footer class="request-footer"><button class="secondary-button" type="button" id="request-cancel">Cancelar</button><button class="secondary-button" type="button" id="copy-sign-link"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.2 1.2"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.2-1.2"/></svg>Copiar enlace</button><button class="primary-button" type="button" id="send-request"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Enviar solicitud</button></footer>
+        </div>
+
+        <div class="request-success" id="request-success" hidden>
+          <button class="request-close" id="success-close" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          <span class="send-success-icon"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+          <span class="request-kicker">SOLICITUD ENVIADA</span><h2>El enlace ya está en camino</h2>
+          <p><strong id="sent-person">Lucía Martínez</strong> recibirá la solicitud por <span id="sent-channel">email</span>. Desde el panel vas a poder ver cuándo la abre y cuándo firma.</p>
+          <div class="sent-summary"><div><span>Firmante</span><strong id="sent-summary-person">Lucía Martínez</strong></div><div><span>Documento</span><strong id="sent-summary-document">Declaración de responsabilidad</strong></div><div><span>Estado</span><strong class="sent-state"><i></i>Enviada ahora</strong></div></div>
+          <div class="success-link"><span>Enlace personal del firmante</span><strong>firmaliga.app/f/FL-8H4K2D</strong></div>
+          <div class="request-success-actions"><button class="secondary-button" type="button" id="close-success">Volver al panel</button><button class="primary-button" type="button" id="open-signer-preview">Ver como lo recibe el firmante <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="signing-app" id="signing-app" aria-hidden="true">
+      <header class="signing-header">
+        <a class="brand signing-brand" href="#"><span class="brand-mark"><svg viewBox="0 0 32 32"><path d="M9 6.5h9.2L24 12.3V25a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2Z"/><path d="M18 6.5V12h5.5M11 20c2.2-3.7 3.2 1.9 5.2-.8 1.2-1.7 1.8.1 4.3-.7"/></svg></span><span>Firma<span>Liga</span></span></a>
+        <div class="secure-label"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Proceso seguro</div>
+        <button class="signer-help-button" id="restart-signer-tour"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.5 2.5 0 1 1 3.9 2.1c-.9.6-1.6 1.1-1.6 2.2M12 17h.01"/></svg>Guía</button>
+        <button class="exit-signing" id="exit-signing">Salir de la demo</button>
+      </header>
+      <div class="demo-ribbon"><strong>DEMO INTERACTIVA</strong><span>No se envían ni almacenan datos reales.</span></div>
+      <main class="signing-main">
+        <aside class="signing-sidebar">
+          <div class="signer-intro"><span class="avatar avatar-lilac large-avatar">LM</span><div><span>Solicitud para</span><strong>Lucía Martínez</strong><small>Las Panteras · Temporada 2026</small></div></div>
+          <div class="step-list">
+            <div class="sign-step active" data-sign-step="1"><span>1</span><div><strong>Tu identidad</strong><small>Confirmá quién sos</small></div></div>
+            <div class="sign-step" data-sign-step="2"><span>2</span><div><strong>Verificación</strong><small>Código de seguridad</small></div></div>
+            <div class="sign-step" data-sign-step="3"><span>3</span><div><strong>Documento</strong><small>Revisá el contenido</small></div></div>
+            <div class="sign-step" data-sign-step="4"><span>4</span><div><strong>Tu firma</strong><small>Firmá y finalizá</small></div></div>
+          </div>
+          <div class="help-card"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.8 2c-.9.6-1.6 1.1-1.6 2M12 17h.01"/></svg><div><strong>¿Necesitás ayuda?</strong><span>Contactá a la organización</span></div></div>
+        </aside>
+
+        <div class="signing-content">
+          <section class="sign-screen active" data-screen="1">
+            <span class="signing-eyebrow">PASO 1 DE 4</span><h1>Verifiquemos tu identidad</h1><p class="signing-lead">Estos datos se utilizan únicamente para vincularte con el documento que vas a firmar.</p>
+            <div class="form-card">
+              <div class="form-grid"><label>Nombre y apellido<input type="text" value="Lucía Martínez" readonly /></label><label>Correo electrónico<input type="email" value="lucia.martinez@email.es" readonly /></label></div>
+              <label>Documento de identidad<span class="field-hint">DNI, NIE o pasaporte</span><div class="input-with-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M13 10h5M13 14h4M6 16h4"/></svg><input id="dni-input" type="text" placeholder="Ej: 12345678Z" autocomplete="off" /></div></label>
+              <div class="upload-zone" id="upload-zone" tabindex="0" role="button" aria-label="Cargar documento de identidad">
+                <input id="dni-file" type="file" accept="image/*,.pdf" hidden />
+                <span class="upload-circle"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></span>
+                <div><strong id="upload-title">Cargá una imagen de tu documento</strong><span id="upload-caption">JPG, PNG o PDF · Máximo 10 MB</span></div>
+                <button type="button" class="secondary-button small" id="demo-dni">Usar documento demo</button>
+              </div>
+              <label class="check-row"><input type="checkbox" id="privacy-check" /><span><i><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></i>He leído y acepto el tratamiento de mis datos para verificar mi identidad y gestionar esta firma.</span></label>
+            </div>
+            <div class="sign-actions"><span class="privacy-note"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Tus datos están protegidos</span><button class="primary-button next-sign" data-next="2">Continuar <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+          </section>
+
+          <section class="sign-screen" data-screen="2">
+            <span class="signing-eyebrow">PASO 2 DE 4</span><h1>Revisá tu teléfono</h1><p class="signing-lead">En producción enviaríamos un código al número terminado en <strong>•• 47</strong>. Para esta demo usá el código que aparece abajo.</p>
+            <div class="otp-card"><div class="phone-illustration"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4M11 18h2"/></svg><i><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></i></div><span>Código de demostración</span><strong>246 810</strong><small>Este código no se envió a ningún teléfono real.</small></div>
+            <label class="otp-label">Ingresá el código de 6 dígitos<div class="otp-inputs" id="otp-inputs"><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /></div></label>
+            <p class="resend-copy">¿No recibiste el código? <button id="fill-otp">Completar código demo</button></p>
+            <div class="sign-actions"><button class="back-button" data-back="1"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Volver</button><button class="primary-button next-sign" data-next="3">Verificar identidad <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+          </section>
+
+          <section class="sign-screen document-screen" data-screen="3">
+            <span class="signing-eyebrow">PASO 3 DE 4</span><h1>Revisá el documento</h1><p class="signing-lead">Confirmá que tus datos sean correctos y leé la declaración antes de continuar.</p>
+            <div class="document-preview">
+              <div class="pdf-toolbar"><span><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>Declaracion_Responsabilidad_Lucia_Martinez.pdf</span><div><button aria-label="Alejar">−</button><strong>100%</strong><button aria-label="Acercar">+</button></div></div>
+              <div class="pdf-stage"><article class="pdf-page"><div class="pdf-brand">LIGA<br/><span>METROPOLITANA</span></div><span class="pdf-tag">TEMPORADA 2026</span><h2>DECLARACIÓN DE RESPONSABILIDAD</h2><p class="pdf-subtitle">Participación en torneo deportivo amateur</p><div class="pdf-rule"></div><h3>DATOS DEL PARTICIPANTE</h3><div class="pdf-data"><div><span>Nombre completo</span><strong>Lucía Martínez</strong></div><div><span>Documento</span><strong>•••• 4821</strong></div><div><span>Equipo</span><strong>Las Panteras</strong></div><div><span>Fecha de nacimiento</span><strong>14 / 08 / 1998</strong></div></div><h3>DECLARACIÓN</h3><p>Declaro que participo voluntariamente en las actividades del torneo y que los datos facilitados son correctos. Confirmo haber leído las normas de participación y las condiciones de responsabilidad aplicables.</p><p>Asimismo, autorizo el tratamiento de los datos estrictamente necesarios para gestionar mi inscripción, verificar mi identidad y conservar la evidencia de esta aceptación.</p><div class="pdf-footer"><span>Documento DOC-2026-0184</span><span>Página 1 de 1</span></div></article></div>
+            </div>
+            <label class="check-row document-accept"><input type="checkbox" id="document-check" /><span><i><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></i>He leído el documento completo y confirmo que los datos son correctos.</span></label>
+            <div class="sign-actions"><button class="back-button" data-back="2"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Volver</button><button class="primary-button next-sign" data-next="4">Continuar a la firma <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+          </section>
+
+          <section class="sign-screen" data-screen="4">
+            <span class="signing-eyebrow">PASO 4 DE 4</span><h1>Firmá el documento</h1><p class="signing-lead">Dibujá tu firma dentro del recuadro. Al finalizar, el documento quedará cerrado y no podrá modificarse.</p>
+            <div class="signature-card"><div class="signature-toolbar"><span>Tu firma</span><button id="clear-signature"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6"/></svg>Limpiar</button></div><div class="canvas-wrap"><canvas id="signature-canvas"></canvas><span id="signature-placeholder">Firmá aquí</span><i></i></div><div class="signature-meta"><span>Lucía Martínez</span><span id="signature-date"></span></div></div>
+            <div class="legal-summary"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg><div><strong>Qué registraremos al confirmar</strong><p>Tu aceptación, identidad verificada, fecha y hora, huella digital del documento y evidencia técnica del proceso.</p></div></div>
+            <div class="sign-actions"><button class="back-button" data-back="3"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Volver</button><button class="primary-button success-button" id="complete-signing">Firmar y finalizar <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></button></div>
+          </section>
+
+          <section class="sign-screen success-screen" data-screen="5">
+            <div class="success-burst"><span><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span><i></i><i></i><i></i><i></i></div><span class="signing-eyebrow">PROCESO COMPLETADO</span><h1>¡Documento firmado!</h1><p class="signing-lead">La organización recibió tu documento. También enviaríamos una copia a <strong>lucia.martinez@email.es</strong>.</p>
+            <div class="receipt-card"><div><span class="receipt-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span><div><strong>Declaración de responsabilidad</strong><span>DOC-2026-0184 · Firmado y protegido</span></div></div><span class="badge signed">Completado</span></div>
+            <div class="evidence-grid"><div><span>Identidad</span><strong>Verificada</strong></div><div><span>Fecha y hora</span><strong id="completed-date">—</strong></div><div><span>Integridad</span><strong>SHA-256</strong></div></div>
+            <div class="success-actions"><button class="secondary-button"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Descargar comprobante</button><button class="primary-button" id="return-dashboard">Volver al panel demo</button></div>
+          </section>
+        </div>
+      </main>
+    </section>
+
+    <div class="onboarding-tour" id="onboarding-tour" aria-hidden="true">
+      <div class="tour-overlay"></div>
+      <section class="tour-tooltip" id="tour-tooltip" role="dialog" aria-live="polite" aria-labelledby="tour-title">
+        <div class="tour-card-top">
+          <span class="tour-icon"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-3.7 10.7c.8.7 1.2 1.5 1.2 2.3h5c0-.8.4-1.6 1.2-2.3A6 6 0 0 0 12 3Z"/><path d="M9.5 19h5M10.5 22h3"/></svg></span>
+          <span class="tour-step-label" id="tour-step-label">BIENVENIDO</span>
+          <button class="tour-close" id="tour-close" aria-label="Omitir guía"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <h2 id="tour-title">Conocé FirmaLiga</h2>
+        <p id="tour-copy">Te mostramos las funciones principales para que empieces en menos de un minuto.</p>
+        <div class="tour-progress" id="tour-progress" aria-label="Progreso de la guía"></div>
+        <footer class="tour-actions">
+          <button class="tour-skip" id="tour-skip">Omitir guía</button>
+          <div><button class="tour-back" id="tour-back">Anterior</button><button class="primary-button" id="tour-next">Comenzar</button></div>
+        </footer>
+      </section>
+    </div>
+
+    <div class="toast" id="toast"><span><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span><div><strong id="toast-title">Listo</strong><p id="toast-message">La acción se completó correctamente.</p></div></div>
+    <script src="app.js"></script>
+  </body>
+</html>
