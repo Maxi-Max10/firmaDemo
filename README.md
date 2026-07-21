@@ -17,7 +17,7 @@ index.html?flow=sign
 ## Recorrido recomendado
 
 1. Seleccioná **Nueva solicitud** desde la barra superior o desde Documentos.
-2. Elegí el firmante, el documento y el canal: email o WhatsApp.
+2. Elegí el firmante y el documento; el enlace personal se enviará por correo electrónico.
 3. Revisá la vista previa y seleccioná **Enviar solicitud**.
 4. Usá **Ver como lo recibe el firmante** para abrir su enlace personal.
 5. Cargá el documento demo y aceptá el tratamiento de datos.

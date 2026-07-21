@@ -185,7 +185,7 @@
       <section class="request-dialog" role="dialog" aria-modal="true" aria-labelledby="request-title">
         <div class="request-compose" id="request-compose">
           <header class="request-header">
-            <div><span class="request-kicker">NUEVA SOLICITUD</span><h2 id="request-title">Enviar documento para firmar</h2><p>Elegí el firmante y el canal por el que recibirá su enlace personal.</p></div>
+            <div><span class="request-kicker">NUEVA SOLICITUD</span><h2 id="request-title">Enviar documento para firmar</h2><p>Elegí el firmante y enviaremos su enlace personal por correo electrónico.</p></div>
             <button class="request-close" id="request-close" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
           </header>
 
@@ -194,9 +194,9 @@
               <div class="request-section-title"><span>1</span><div><strong>¿Quién debe firmar?</strong><small>Seleccioná una persona registrada</small></div></div>
               <label class="request-field">Firmante
                 <select id="request-signer">
-                  <option value="lucia" data-name="Lucía Martínez" data-email="lucia.martinez@email.es" data-phone="+34 612 345 947" data-team="Las Panteras" data-initials="LM">Lucía Martínez · Las Panteras</option>
-                  <option value="sofia" data-name="Sofía Herrera" data-email="pablo.herrera@email.es" data-phone="+34 611 205 174" data-team="Las Panteras" data-initials="SH">Sofía Herrera · Tutor: Pablo Herrera</option>
-                  <option value="diego" data-name="Diego Romero" data-email="diego.romero@email.es" data-phone="+34 644 082 319" data-team="Unión Central" data-initials="DR">Diego Romero · Unión Central</option>
+                  <option value="lucia" data-name="Lucía Martínez" data-email="lucia.martinez@email.es" data-team="Las Panteras" data-initials="LM">Lucía Martínez · Las Panteras</option>
+                  <option value="sofia" data-name="Sofía Herrera" data-email="pablo.herrera@email.es" data-team="Las Panteras" data-initials="SH">Sofía Herrera · Tutor: Pablo Herrera</option>
+                  <option value="diego" data-name="Diego Romero" data-email="diego.romero@email.es" data-team="Unión Central" data-initials="DR">Diego Romero · Unión Central</option>
                 </select>
               </label>
               <div class="selected-recipient">
@@ -214,13 +214,13 @@
                 </select>
               </label>
 
-              <div class="request-section-title request-section-gap"><span>3</span><div><strong>¿Cómo le llegará?</strong><small>El enlace es único para esta persona</small></div></div>
-              <div class="channel-switch" aria-label="Canal de envío">
-                <button class="active" type="button" data-channel="email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</button>
-                <button type="button" data-channel="whatsapp"><svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7a8.5 8.5 0 1 1 16.3-3.8Z"/><path d="M8.7 8.2c.4 2.8 2.2 4.6 5 5"/></svg>WhatsApp</button>
+              <div class="request-section-title request-section-gap"><span>3</span><div><strong>¿A qué correo le llegará?</strong><small>El enlace es único para esta persona</small></div></div>
+              <div class="email-only-channel" aria-label="Canal de envío por correo electrónico">
+                <span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                <div><strong>Envío por correo electrónico</strong><small>El firmante recibirá un botón para abrir y firmar el documento.</small></div>
               </div>
               <label class="request-field"><span id="destination-label">Correo de destino</span><input id="request-destination" type="email" value="lucia.martinez@email.es" /></label>
-              <div class="request-security"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><strong>Enlace protegido e individual</strong><span>No incluye el PDF adjunto. La identidad se valida antes de mostrarlo.</span></div></div>
+              <div class="request-security"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><strong>Enlace protegido e individual</strong><span>No incluye el PDF adjunto. El documento se abre desde su enlace personal.</span></div></div>
             </div>
 
             <aside class="delivery-preview">
@@ -238,12 +238,6 @@
                 </div>
               </div>
 
-              <div class="whatsapp-preview" id="whatsapp-preview" hidden>
-                <div class="phone-top"><span>9:41</span><i></i></div>
-                <div class="chat-header"><span class="brand-mark"><svg viewBox="0 0 32 32"><path d="M9 6.5h9.2L24 12.3V25a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2Z"/><path d="M18 6.5V12h5.5"/></svg></span><div><strong>FirmaLiga</strong><small>Cuenta de empresa</small></div></div>
-                <div class="chat-body"><div class="chat-bubble">Hola <strong id="whatsapp-first-name">Lucía</strong> 👋<br/><br/>La Liga Metropolitana te envió <strong id="whatsapp-document">Declaración de responsabilidad</strong> para revisar y firmar.<a href="#" tabindex="-1">firmaliga.app/f/FL-8H4K2D</a><small>11:32 ✓✓</small></div><span class="encrypted-copy">🔒 Mensaje protegido</span></div>
-              </div>
-
               <div class="link-preview"><span>ENLACE DEL FIRMANTE</span><div><strong>firmaliga.app/f/FL-8H4K2D</strong><button type="button" id="copy-link-inline" aria-label="Copiar enlace"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></svg></button></div><small>Solamente funciona para el firmante seleccionado.</small></div>
             </aside>
           </div>
@@ -255,7 +249,7 @@
           <button class="request-close" id="success-close" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
           <span class="send-success-icon"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
           <span class="request-kicker">SOLICITUD ENVIADA</span><h2>El enlace ya está en camino</h2>
-          <p><strong id="sent-person">Lucía Martínez</strong> recibirá la solicitud por <span id="sent-channel">email</span>. Desde el panel vas a poder ver cuándo la abre y cuándo firma.</p>
+          <p><strong id="sent-person">Lucía Martínez</strong> recibirá la solicitud por <span id="sent-channel">correo electrónico</span>. Desde el panel vas a poder ver cuándo la abre y cuándo firma.</p>
           <div class="sent-summary"><div><span>Firmante</span><strong id="sent-summary-person">Lucía Martínez</strong></div><div><span>Documento</span><strong id="sent-summary-document">Declaración de responsabilidad</strong></div><div><span>Estado</span><strong class="sent-state"><i></i>Enviada ahora</strong></div></div>
           <div class="success-link"><span>Enlace personal del firmante</span><strong>firmaliga.app/f/FL-8H4K2D</strong></div>
           <div class="request-success-actions"><button class="secondary-button" type="button" id="close-success">Volver al panel</button><button class="primary-button" type="button" id="open-signer-preview">Ver como lo recibe el firmante <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>

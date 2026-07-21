@@ -4,7 +4,6 @@ const state = {
   demoDniLoaded: false,
   hasSignature: false,
   signed: false,
-  requestChannel: "email",
 };
 
 const adminApp = document.querySelector("#admin-app");
@@ -93,35 +92,22 @@ function syncRequestPreview(resetDestination = false) {
   const signer = selectedSigner();
   const documentData = selectedDocument();
   const firstName = signer.name.split(" ")[0];
-  const isEmail = state.requestChannel === "email";
-  const destination = isEmail ? signer.email : signer.phone;
+  const destination = signer.email;
 
   if (resetDestination) requestDestination.value = destination;
-  requestDestination.type = isEmail ? "email" : "tel";
-  document.querySelector("#destination-label").textContent = isEmail ? "Correo de destino" : "Teléfono con WhatsApp";
+  requestDestination.type = "email";
+  document.querySelector("#destination-label").textContent = "Correo de destino";
   document.querySelector("#request-avatar").textContent = signer.initials;
   document.querySelector("#request-name").textContent = signer.name;
   document.querySelector("#request-contact").textContent = destination;
-  document.querySelector("#email-to").textContent = isEmail ? requestDestination.value : signer.email;
+  document.querySelector("#email-to").textContent = requestDestination.value;
   document.querySelector("#email-subject").textContent = `${firstName}, tenés un documento pendiente de firma`;
   document.querySelector("#email-first-name").textContent = firstName;
   document.querySelector("#email-document").textContent = documentData.title;
   document.querySelector("#email-document-code").textContent = `${documentData.code} · Temporada 2026`;
-  document.querySelector("#whatsapp-first-name").textContent = firstName;
-  document.querySelector("#whatsapp-document").textContent = documentData.title;
   document.querySelector("#sent-person").textContent = signer.name;
   document.querySelector("#sent-summary-person").textContent = signer.name;
   document.querySelector("#sent-summary-document").textContent = documentData.title;
-}
-
-function setRequestChannel(channel) {
-  state.requestChannel = channel;
-  document.querySelectorAll("[data-channel]").forEach(button => button.classList.toggle("active", button.dataset.channel === channel));
-  const isEmail = channel === "email";
-  document.querySelector("#email-preview").hidden = !isEmail;
-  document.querySelector("#whatsapp-preview").hidden = isEmail;
-  document.querySelector("#preview-channel-title").textContent = isEmail ? "Así recibirá el email" : "Así recibirá el WhatsApp";
-  syncRequestPreview(true);
 }
 
 function openRequest() {
@@ -159,24 +145,23 @@ async function copySignerLink() {
 
 document.querySelectorAll(".open-request").forEach(button => button.addEventListener("click", openRequest));
 document.querySelectorAll("#request-close, #request-cancel, #request-backdrop, #success-close, #close-success").forEach(button => button.addEventListener("click", closeRequest));
-document.querySelectorAll("[data-channel]").forEach(button => button.addEventListener("click", () => setRequestChannel(button.dataset.channel)));
 requestSigner.addEventListener("change", () => syncRequestPreview(true));
 requestDocument.addEventListener("change", () => syncRequestPreview(false));
 requestDestination.addEventListener("input", () => {
   document.querySelector("#request-contact").textContent = requestDestination.value;
-  if (state.requestChannel === "email") document.querySelector("#email-to").textContent = requestDestination.value;
+  document.querySelector("#email-to").textContent = requestDestination.value;
 });
 document.querySelectorAll("#copy-sign-link, #copy-link-inline").forEach(button => button.addEventListener("click", copySignerLink));
 document.querySelector("#send-request").addEventListener("click", () => {
   if (!requestDestination.value.trim()) {
-    showToast("Falta el destinatario", "Ingresá un email o teléfono para enviar la solicitud.", "error");
+    showToast("Falta el destinatario", "Ingresá un correo electrónico para enviar la solicitud.", "error");
     requestDestination.focus();
     return;
   }
   const signer = selectedSigner();
   requestCompose.hidden = true;
   requestSuccess.hidden = false;
-  document.querySelector("#sent-channel").textContent = state.requestChannel === "email" ? "email" : "WhatsApp";
+  document.querySelector("#sent-channel").textContent = "correo electrónico";
   if (requestSigner.value === "lucia") {
     document.querySelector("#lucia-status").textContent = "Enviada";
     document.querySelector("#lucia-doc-status").textContent = "Enviada";
@@ -401,7 +386,7 @@ const adminTourSteps = [
   {
     label: "PASO 1 DE 4",
     title: "Creá una solicitud de firma",
-    copy: "Desde este botón elegís a la persona, el documento y si recibirá su enlace por email o WhatsApp.",
+    copy: "Desde este botón elegís a la persona y el documento. El enlace personal se envía por correo electrónico.",
     target: "#open-signing-top",
     placement: "bottom",
   },
